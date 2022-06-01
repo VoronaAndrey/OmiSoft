@@ -1,0 +1,75 @@
+
+@mixin indents($with, $mt) {
+    width: $with;
+    margin-top: $mt;
+    padding: 0.4em;
+}
+@mixin border {
+    border: none;
+    border-radius: 12px;   
+}
+
+
+.formLogin{
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.8em;
+    margin: 0 auto;
+    .sectionInput{
+        @include indents(90%, 1.5em);
+    }
+    .inputLogin{
+        @include indents(100%, 0);
+        @include border();
+        position: relative;
+        font-size: 0.8em;
+        font-weight: 200;
+        padding-left: 2em;
+        background-color: rgba(178, 182, 189, 0.4);
+    }
+    .submitBtn{
+        @include indents(90%, 2em);
+        @include border();
+        font-size: 0.8em;
+        background-color: rgb(89, 201, 89);
+        color: #fff;
+    }
+    .submitBtn:disabled,
+    button[disabled]{
+        color: rgb(124, 120, 120);
+        background-color: rgba(178, 182, 189, 0.4);
+    }
+    .validationError{
+        @include border();
+        position: absolute;
+        width: 80%;
+        right: 50%;
+        transform: translate(50%);
+        font-weight: 200;
+        text-align: center;
+        margin-top: 0.2em;
+        font-size: 0.6em;
+        background-color: red;
+        color: #fff;
+    }
+    .icon{
+    position: absolute;
+    width: 10px;
+    margin: 0;
+    transform: translate(0.5em, -18px);
+    // margin-left: 5px;
+    }
+    .forgout{
+        font-weight: 200;
+        margin-top: 1em;
+        color: rgb(156, 151, 151);
+        a{
+        margin-left: 0.5em;
+        font-weight: 200;
+        text-decoration: none;
+        color: rgb(70, 69, 69);
+        }
+    }
+}
