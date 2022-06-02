@@ -58,7 +58,7 @@ function FormLogin () {
                 <button className={style.submitBtn} type='submit' disabled={disabled}>LOGIN</button>
                 <p className={style.forgout}>
                     Forgout
-                    <Link to="/">Username / Password</Link>
+                    <Link to="/login">Username / Password</Link>
                 </p>
             </form>
         </div>
