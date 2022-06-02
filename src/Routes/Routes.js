@@ -1,11 +1,14 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import LoginPage from "../pages/LoginPage";
 
 function Routes() {
   return (
       <Switch>
-        <Route exact path="/" component={LoginPage} />
+        <Route exact path="/" >
+          <Redirect to="/login"/>
+        </Route>
+        <Route path="/login" component={LoginPage} />
       </Switch>
   );
 }

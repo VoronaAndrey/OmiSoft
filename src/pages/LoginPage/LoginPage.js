@@ -1,22 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import FormLogin from "../../components/FormLogin/FormLogin";
-
+import LoginIcon from "../../components/LoginIcon/LoginIcon";
+import LoginSection from "../../components/LoginSection/LoginSection";
 import style from "./LoginPage.module.scss"
 
-function HomePage() {
+function LoginPage() {
 
   return (
-    <div className={style.loginSection}>
-      <h1>
-        Member Login
-      </h1>
-      <FormLogin />
-      <div className={style.sectionCreateAccount}>
-        <Link className={style.createAccount} to='/'>Create your Acccount </Link>
-      </div>
+    <div className={style.loginBlock}>
+        <LoginIcon/>  
+        <LoginSection/>
     </div>
   );
 }
 
-export default HomePage;
+export default LoginPage;

@@ -1,6 +1,6 @@
 
-@mixin indents($with, $mt) {
-    width: $with;
+@mixin indents($width, $mt) {
+    width: $width;
     margin-top: $mt;
     padding: 0.4em;
 }
@@ -9,7 +9,9 @@
     border-radius: 12px;   
 }
 
-
+.sectionLogin{
+    position: relative;
+}
 .formLogin{
     max-width: 500px;
     display: flex;
@@ -18,19 +20,19 @@
     font-size: 0.8em;
     margin: 0 auto;
     .sectionInput{
-        @include indents(90%, 1.5em);
+        @include indents(75%, 1.5em);
     }
     .inputLogin{
         @include indents(100%, 0);
         @include border();
-        position: relative;
+        align-items: center;
         font-size: 0.8em;
         font-weight: 200;
         padding-left: 2em;
         background-color: rgba(178, 182, 189, 0.4);
     }
     .submitBtn{
-        @include indents(90%, 2em);
+        @include indents(72%, 2em);
         @include border();
         font-size: 0.8em;
         background-color: rgb(89, 201, 89);
@@ -43,8 +45,9 @@
     }
     .validationError{
         @include border();
+        padding: 0 5px;
         position: absolute;
-        width: 80%;
+        width: 70%;
         right: 50%;
         transform: translate(50%);
         font-weight: 200;
