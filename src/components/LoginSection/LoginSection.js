@@ -12,7 +12,7 @@ function LoginSection () {
         </h1>
         <FormLogin />
         <div className={style.sectionCreateAccount}>
-            <Link className={style.createAccount} to='/'>Create your Acccount </Link>
+            <Link className={style.createAccount} to='/login'>Create your Acccount </Link>
         </div>
     </div>
     )
