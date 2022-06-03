@@ -7,7 +7,6 @@ import { Redirect, Route } from "react-router-dom";
 
 function RequireAuth ({component: Component}) {
   const auth = useSelector((store)=>store.auth.isAuth)
-  console.log(auth);
   return(
     <Route
       render={(props) => {
