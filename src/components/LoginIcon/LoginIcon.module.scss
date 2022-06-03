@@ -1,0 +1,14 @@
+.loginIcon{
+    @media (min-width: 800px) {
+        display: flex;
+    }
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 50%;
+    padding-bottom: 4em;
+    img{
+        max-width: 18em;
+    }
+}

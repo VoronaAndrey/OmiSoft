@@ -1,41 +1,32 @@
-@mixin loginSection {
-  background-color: red;
+body{
+  background: linear-gradient(14deg, rgba(61,53,194,1) 0%, rgba(142,28,218,1) 42%, rgba(248,0,255,1) 100%) no-repeat;
 }
-html{
-  background: linear-gradient(14deg, rgba(61,53,194,1) 0%, rgba(142,28,218,1) 42%, rgba(248,0,255,1) 100%);
+
+@mixin widthAdaptive ($width, $maxWidth){
+  width: $width;
+  max-width: $maxWidth;
 }
-.loginSection{
-  display: flex;
-  flex-direction: column;
-  min-width: 80%;
-  margin-left: 50%;
-  background-color: white;
-  border-radius: 10px;
-  position: absolute;
-  top: 50%;  
-  transform: translate(-50%, -50%);
-    h1{
-      text-align: center;
-      font-size: 2em;
-      margin-top: 2em;
-    }
-  .sectionCreateAccount{
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    align-items: center;
-    margin: 2em;
-    ::after{
-      content: '\27F6';
-      margin-left: 0,5em;
-      // position:absolute;
-    }
-    .createAccount{
-    margin-top: 4em;
-    font-weight: 400;
-    text-decoration: none;
-    color:  rgb(70, 69, 69);
-    }
+.loginBlock{
+  @media (min-width: 480px) {
+    @include widthAdaptive(70%, 425px)
   }
-  
+  @media (min-width: 800px) {
+    @include widthAdaptive(90%, 100%)
 }
+  @media (min-width: 1024px) {
+    @include widthAdaptive(100%, 940px)
+}
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 90%;
+    padding: 2em;
+    margin-left: 50%;
+    background-color: #fff;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;  
+    transform: translate(-50%, -50%);
+}
+

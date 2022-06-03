@@ -1,37 +1,28 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-else-return  */
 /* eslint-disable react/forbid-prop-types  */
 import React from "react";
-import PropTypes from "prop-types";
-import { Route, Redirect } from "react-router-dom";
-import { getFromLS } from "../utils/localStorage";
+import { useSelector } from "react-redux";
+import { Redirect, Route } from "react-router-dom";
 
-function RequireAuth({ component: Component, ...rest }) {
+function RequireAuth ({component: Component}) {
+  const auth = useSelector((store)=>store.auth.isAuth)
+  console.log(auth);
+  return(
+    <Route
+      render={(props) => {
+        if (auth) {
+          return <Component {...props} />;
+        } else {
+          return (
+            <Redirect
+              to='/login' />
+          ); 
+        }
+      }}
+    />
+  );
 
-    return(
-        <Route
-          {...rest}
-          render={(props) => {
-            if (getFromLS("authToken")) {
-              return <Component {...props} />;
-            } else {
-              return (
-                <Redirect
-                  to={{ pathname: "/", state: {from: props.location}}} />
-              ); 
-            }
-          }}
-        />
-      );
 }
 
-RequireAuth.propTypes = {
-  component: PropTypes.elementType,
-  location: PropTypes.object,
-};
-
-RequireAuth.defaultProps = {
-  component: null,
-  location: null,
-};
-
-export default React.memo(RequireAuth);
+export default RequireAuth;
