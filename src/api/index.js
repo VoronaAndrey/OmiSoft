@@ -25,10 +25,10 @@ api.interceptors.response.use((config) => {
         originalRequest._isRetry = true;
         try {
             const response = await axios.get(`${API_URL}/refresh`, {withCredentials: true})
-            console.log(response);
             localStorage.setItem('token', response.data.accessToken);
             return api.request(originalRequest);
         } catch (e) {
+            // eslint-disable-next-line no-console
             console.log('НЕ АВТОРИЗОВАН')
         }
     }
