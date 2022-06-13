@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { login } from '../../store/actionCreators/auth'
 import validateEmail from '../../hook/validateEmail'
 import validatePassword from '../../hook/validatePassword'
 import blurHandler from '../../hook/blurHandler'
@@ -7,6 +9,7 @@ import dataHendler from '../../hook/dataHendler'
 import style from './FormLogin.module.scss'
 import emailIcon from '../../assets/email.png'
 import passwordIcon from '../../assets/padlock.png'
+
 
 function FormLogin () {
     const [email, setEmail] = useState('')
@@ -17,6 +20,17 @@ function FormLogin () {
     const [passwordError, setPasswordError] = useState('Please fill in the password field')
     const [disabled, setDisabled]= useState(false)
 
+    const dispatch = useDispatch()
+    const auth = useSelector((store)=>store.auth.isAuth)
+    const history = useHistory()
+
+
+    useEffect(()=>{
+        if(auth){
+            history.push('/')
+        }
+    },[auth])
+
     useEffect(()=>{
         if(validateEmail(email) && validatePassword(password)){
             setDisabled(false)
@@ -24,6 +38,11 @@ function FormLogin () {
             setDisabled(true)
         }
     },[email,password])
+
+    function loginUser (e){
+        e.preventDefault()
+        dispatch(login(email,password))        
+    }
 
     return(
         <div className={style.sectionLogin}>
@@ -55,7 +74,7 @@ function FormLogin () {
                         <img className={style.icon} src={passwordIcon} alt='password'/>
                     </div>
                 </div>
-                <button className={style.submitBtn} type='submit' disabled={disabled}>LOGIN</button>
+                <button className={style.submitBtn} type='submit' disabled={disabled} onClick={loginUser}>LOGIN</button>
                 <p className={style.forgout}>
                     Forgout
                     <Link to="/login">Username / Password</Link>
