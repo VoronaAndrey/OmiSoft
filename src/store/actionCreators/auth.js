@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 import axios from "axios";
 import AuthService from "../../axios";
@@ -46,7 +47,6 @@ export const checkAuth = ()=> async(dispatch)=> {
     dispatch(setLoading(true));
     try {
         const response = await axios.get(`${API_URL}/refresh`, {withCredentials: true})
-        console.log(response);
         localStorage.setItem('token', response.data.accessToken);
         dispatch(setAuth(true));
         dispatch(setUser(response.data.user));
@@ -56,46 +56,3 @@ export const checkAuth = ()=> async(dispatch)=> {
       dispatch(setLoading(false));
     }
 }
-
-
-// export const setIsLoadingCards = (isLoading) => ({
-//   type: SET_IS_LOADING_CARDS,
-//   payload: isLoading,
-// });
-
-// export const initCardItemsCreator = () => async (dispatch) => {
-//   dispatch(setIsLoadingCards(true));
-//   try {
-//     const { data } = await getProducts();
-//     dispatch({ type: GET_ITEMS, payload: data });
-//     dispatch(setIsLoadingCards(false));
-//   } catch (e) {
-//     dispatch(setIsLoadingCards(false));
-//     Notiflix.Notify.failure("Unable to load dishes. Server error.");
-//   }
-// };
-
-// export const initCategories = (categories) => ({
-//   type: SET_CATEGORIES,
-//   payload: categories,
-// });
-
-// export const resetCategories = ()=> ({type: RESER_CATEGORIES, payload: []})
-
-// export const initСategoriesItemsCreator = (inquiry) => async (dispatch) => {
-//   const allCategories = {};
-//   const {
-//     data: { products },
-//   } = await getByCategory(inquiry);
-//   products.forEach((item) => {
-//     if (!(`${item.categories}` in allCategories)) {
-//       allCategories[item.categories] = [item];
-//     } else {
-//       allCategories[item.categories] = [
-//         ...allCategories[item.categories],
-//         item,
-//       ];
-//     }
-//   });
-//   dispatch({ type: GET_FIND_ITEMS, payload: allCategories });
-// };
