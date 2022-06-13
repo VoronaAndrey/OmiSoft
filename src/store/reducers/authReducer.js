@@ -1,26 +1,26 @@
 /* eslint-disable no-else-return */
 /* eslint-disable default-param-last */
 
+export const SET_USER = "SET_USER";
 export const SET_AUTH = "SET_AUTH";
-export const SET_ACCESS_TOKEN = "SET_ACCESS_TOKEN";
-export const SET_REFRESH_TOKEN = "SET_REFRESH_TOKEN";
+export const SET_LOADING = "SET_LOADING";
 
 const initialState = {
-  isAuth: false,
-  accessToken: '',
-  refreshToken:'',
+    user : {},
+    isAuth : false,
+    isLoading : false,
 };
 
 const authReducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    case SET_USER: {
+      return { ...state, user: payload}
+    }
     case SET_AUTH: {
       return { ...state, isAuth: payload}
     }
-    case SET_ACCESS_TOKEN: {
-      return { ...state, accessToken: payload}
-    }
-    case SET_REFRESH_TOKEN: {
-      return { ...state, refreshToken: payload}
+    case SET_LOADING: {
+      return { ...state, isLoading: payload}
     } 
     default: {
       return state;
