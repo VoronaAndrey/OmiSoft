@@ -5,9 +5,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Routes from "./Routes/Routes";
 import store from "./store";
 
-
-// import FormLogin from "./components/FormLogin/FormLogin";
-
 function App() {
 
   return (
