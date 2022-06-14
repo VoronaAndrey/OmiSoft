@@ -10,7 +10,6 @@ import style from './FormLogin.module.scss'
 import emailIcon from '../../assets/email.png'
 import passwordIcon from '../../assets/padlock.png'
 
-
 function FormLogin () {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -23,7 +22,7 @@ function FormLogin () {
     const dispatch = useDispatch()
     const auth = useSelector((store)=>store.auth.isAuth)
     const history = useHistory()
-
+    // document.addEventListener('click',()=> console.log('Click'))
 
     useEffect(()=>{
         if(auth){
@@ -45,6 +44,7 @@ function FormLogin () {
     }
 
     return(
+        
         <div className={style.sectionLogin}>
             <form className={style.formLogin}>
                 <div className={style.sectionInput}>

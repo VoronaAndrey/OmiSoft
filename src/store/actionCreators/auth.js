@@ -7,6 +7,7 @@ import {
   SET_AUTH,
   SET_USER,
   SET_LOADING,
+  SET_ERROR
 } from "../reducers/authReducer";
 
 
@@ -14,25 +15,39 @@ export const setAuth = (isAuth) =>({
   type:SET_AUTH,
   payload: isAuth,
 })
+
 export const setUser = (user) =>( {
   type:SET_USER,
   payload: user,
 })
+
 export const setLoading = (isLoading) =>({
   type:SET_LOADING,
   payload: isLoading,
 })
+
+export const setError= (error) =>({
+  type:SET_ERROR,
+  payload: error,
+})
+
 export const login = (email,password)=> async (dispatch) =>{
+  dispatch(setLoading(true));
   try {
+    dispatch(setError(false))
     const response = await AuthService.login(email, password);
     localStorage.setItem('token', response.data.accessToken);
     dispatch(setAuth(true));
     dispatch(setUser(response.data.user));
   } catch (e) {
-    console.log(e.response?.data?.message);
+    dispatch(setError(e.response?.data?.message))
+  } finally {
+    dispatch(setLoading(false));
   }
 }
+
 export const logout = ()=> async(dispatch)=> {
+  dispatch(setLoading(true));
   try {
       const response = await AuthService.logout();
       localStorage.removeItem('token');
@@ -40,6 +55,9 @@ export const logout = ()=> async(dispatch)=> {
       dispatch(setUser({}));
   } catch (e) {
       console.log(e.response?.data?.message);
+  }
+  finally {
+    dispatch(setLoading(false));
   }
 }
 
